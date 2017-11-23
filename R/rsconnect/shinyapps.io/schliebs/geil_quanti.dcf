@@ -1,0 +1,13 @@
+name: geil_quanti
+title: geil_quanti
+username:
+account: schliebs
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 239252
+bundleId: 1092140
+url: https://schliebs.shinyapps.io/geil_quanti/
+when: 1511428308.07792
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: 00_shiny_global.R|desktop.ini|marcel.r|marcel2.R|old.r|shinyapp.R|shinyapp_final.R|test1.R

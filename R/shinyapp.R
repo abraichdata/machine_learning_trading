@@ -21,7 +21,6 @@ library(nnet);
 library(shiny)
 
 fulldata_temp <- read.table(file = "data/marcel.csv", sep=";", dec=",", header=TRUE)
-
 fulldata <- fulldata_temp[20:nrow(fulldata_temp),]
 
 move_cols <- sapply(fulldata, is.character)
@@ -39,17 +38,11 @@ fulldata <- fulldata[,2:ncol(fulldata)]
 numRows = dim(fulldata)[1]
 lastday = fulldata[numRows, ] 
 fulldata = fulldata[1:numRows-1, ]
+###################################
 
 # Training / Testing Data Sets
 set.seed(123)
-
-accu.linear <- c()
-
-for (splittt in c(1:98)){
-  
-  splitt <- seq(0.1,0.99,length.out = 98)[splittt]
-
-splitIndex <- createDataPartition(fulldata$Target, p = splitt, list = FALSE, times = 1) 
+splitIndex <- createDataPartition(fulldata$Target, p = .9, list = FALSE, times = 1) 
 
 #random train / testing
 trainDF <- fulldata[splitIndex,]
@@ -74,17 +67,12 @@ svm.predict.linear <-  predict(svm.model.linear,testDF)
 #accuracy f?r modell
 agreement.linear <- svm.predict.linear == testDF$Target
 
-accu.linear[splittt] = sum(agreement.linear) / length(agreement.linear)
-
-}
-write.csv(accu.linear,"accu.csv")
-
+accu.linear = sum(agreement.linear) / length(agreement.linear)
 
 print(accu.linear)
 print(svm.model.linear)
 
 #Save in file
-
 
 lastdayPred <- predict(svm.model.linear, lastday)
 

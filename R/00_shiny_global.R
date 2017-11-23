@@ -1,3 +1,4 @@
+library(shinydashboard)
 header <- dashboardHeader(title = 'Predicting Stock Returns Using "Alternative" Data')
 
 sidebar <- dashboardSidebar(
